@@ -1,0 +1,182 @@
+You are a senior full-stack engineer specializing in React SPA, Express SSR, routing, and SEO.
+
+My project has multiple URL routing and data consistency issues between the Express SEO layer and the React SPA.
+
+Your task is to resolve all routing conflicts, fix avatar validation mismatch, and keep SEO coverage intact without breaking the app.
+
+IMPORTANT:
+- Do NOT reduce SEO coverage
+- Do NOT redesign the UI
+- Do NOT break the React SPA
+- Do NOT break SSR for bots
+- Do NOT change unrelated features
+- Keep the code clean, consistent, and maintainable
+
+--------------------------------------------------
+MAIN PROBLEM SUMMARY
+--------------------------------------------------
+The app has conflicts in:
+- SSR routes vs SPA routes
+- bot detection logic
+- duplicate route handling
+- avatar validation sync
+
+I need all of these fixed properly.
+
+--------------------------------------------------
+FIX 1 — /genres and /countries MUST behave correctly
+--------------------------------------------------
+Problem:
+- In server/seo/routes.ts, /genres and /countries are currently registered with asyncHandler directly instead of botOnly()
+- This means every user gets SSR HTML, and the React SPA never loads for these URLs
+- Also, src/App.tsx does not currently handle these routes properly
+
+Task:
+- Change these routes to use botOnly(), just like the other SEO routes
+- Real users must receive the SPA
+- Bots must receive SSR HTML
+- Add React Router routes for:
+  - /genres
+  - /countries
+
+These routes should render the correct SPA page, such as:
+- Listing component
+- or a dedicated HubPage component
+
+Make sure client navigation and direct access both work.
+
+--------------------------------------------------
+FIX 2 — BOT DETECTION LOGIC
+--------------------------------------------------
+Problem:
+- The isBot() regex currently includes:
+  - anthropic
+  - claude
+- This causes Claude-related user agents to be treated as bots
+- Lighthouse / headless / prerender detection may also cause false positives
+
+Task:
+- Review the bot detection regex carefully
+- Remove false positives unless they are intentionally needed
+- If Anthropic/Claude user agents should not be treated as SEO bots, remove:
+  - anthropic
+  - claude
+- Keep only the actual crawlers you want to target
+
+Add a clear comment documenting the intended bot behavior.
+
+Also:
+- Make the bot detection efficient
+- Avoid unnecessary repeated regex checks if possible
+- Keep the logic easy to maintain
+
+--------------------------------------------------
+FIX 3 — /show/:id and /drama/:id ROUTE CONSISTENCY
+--------------------------------------------------
+Problem:
+- Both /drama/:id and /show/:id map to the same SSR handler
+- The React SPA may also handle both routes
+- This creates maintenance burden and SEO inconsistency
+- Sitemap generation may not match all exposed routes
+
+Task:
+Choose one clean strategy and apply it consistently:
+
+Option A:
+- Keep /drama/:id as canonical
+- Remove /show/:id SSR duplicate
+- Let /show/:id fall through to SPA or redirect it to /drama/:id
+
+Option B:
+- Keep both, but:
+  - add canonical handling
+  - ensure sitemap includes both if both are intentionally supported
+  - keep structured data consistent
+
+Preferred approach:
+- Keep one canonical route for SEO
+- Avoid duplicate SSR route definitions unless absolutely required
+
+Also:
+- Make sure the route order is correct
+- SEO routes must be registered before Vite middleware and before the production static catch-all
+
+Add a code comment explaining that ordering clearly.
+
+--------------------------------------------------
+FIX 4 — AVATAR VALIDATION SYNC
+--------------------------------------------------
+Problem:
+- server/utils/validation.ts only allows avatar1 through avatar10
+- frontend src/constants/avatars.ts has avatar1 through avatar14
+- Users selecting avatar11 to avatar14 get 400 errors
+
+Task:
+- Sync backend validation with frontend avatar source of truth
+- VALID_AVATAR_IDS must include all 14 avatar IDs:
+  - avatar1 through avatar14
+
+Preferred solution:
+- Create a shared avatar source of truth if possible
+- Or update the backend validation set manually to match the frontend exactly
+
+Make sure:
+- users can save all valid avatars
+- no valid avatar gets rejected
+- invalid avatars are still blocked
+
+--------------------------------------------------
+FIX 5 — ROUTE ORDER / MIDDLEWARE SAFETY
+--------------------------------------------------
+Problem:
+- The app uses an Express SEO layer plus Vite middleware plus static fallback
+- A future refactor could break the order and routing behavior
+
+Task:
+- Verify and preserve the correct order:
+  1. SEO routes
+  2. API routes
+  3. Vite middleware in dev
+  4. static asset serving in prod
+  5. catch-all SPA fallback
+
+Add a clear comment in registerSeoRoutes() stating:
+- SEO routes must be registered before Vite middleware and static catch-all
+- Otherwise bots and users will receive wrong content
+
+--------------------------------------------------
+FIX 6 — TESTING AND VERIFICATION
+--------------------------------------------------
+After implementing the fixes, verify these cases:
+
+- A normal browser request to /genres should load the React SPA, not SSR HTML
+- A bot request to /genres should get SSR HTML
+- /countries should behave the same way
+- /drama/:id should remain stable and canonical
+- /show/:id should no longer create conflicting behavior
+- Saving a profile with avatar11, avatar12, avatar13, or avatar14 must succeed
+- No route should randomly switch between SSR and SPA output
+
+Please also check:
+- direct URL access
+- refresh on nested routes
+- back/forward navigation
+- no blank pages
+- no 404 on valid SPA routes
+- no unexpected layout break
+
+--------------------------------------------------
+DELIVERABLE
+--------------------------------------------------
+Please:
+- fix the route conflicts
+- fix the bot detection logic
+- sync avatar validation with the frontend
+- preserve SEO coverage
+- keep the SPA working for real users
+- keep SSR working for bots
+- explain exactly what was broken and what you changed
+
+Do not add unrelated features.
+Do not remove valid SEO functionality.
+Do not break the existing UI.

@@ -1,0 +1,92 @@
+You are a senior full-stack developer specializing in authentication systems.
+
+After migrating my backend from SQL to MongoDB, authentication is partially working:
+- Login works
+- Signup works
+- But logout is missing or not working
+- Authenticated UI is broken (logout button not showing)
+- User-specific features are also inconsistent
+
+Your task is to fully fix the authentication system, including logout functionality and frontend auth state.
+
+IMPORTANT:
+- Do NOT redesign UI
+- Keep existing UI structure and styling
+- Keep SEO intact
+- Focus on fixing auth flow, token handling, and user state
+
+WHAT TO FIX:
+
+1) LOGOUT FUNCTIONALITY
+- Implement a proper logout system
+- Clear JWT token from:
+  - localStorage OR cookies (whichever is used)
+- Reset frontend auth state after logout
+- Redirect user to homepage after logout
+- Ensure protected data is cleared after logout
+
+2) SHOW/HIDE AUTH UI
+Fix conditional rendering in header/navbar:
+
+Requirements:
+- If user is logged in → show:
+  - Profile / Avatar
+  - Logout button
+- If user is NOT logged in → show:
+  - Login button
+  - Signup button
+
+Fix:
+- broken state detection
+- incorrect auth checks
+- stale token issues
+
+3) AUTH STATE MANAGEMENT
+Fix global auth state:
+
+- Create or fix AuthContext / global state
+- On page load:
+  - check token from storage
+  - validate token (optional API call / decode)
+  - restore user session
+- Ensure refresh করলে user logged-in থাকে
+
+4) TOKEN HANDLING
+- Ensure token is saved properly after login
+- Ensure token is sent in ALL protected API calls:
+  Authorization: Bearer <token>
+
+- Fix missing headers in:
+  - favorites
+  - watchlist
+  - bookmark
+  - continue watching
+
+5) FRONTEND BUG FIX
+- Fix why logout button is not visible
+- Fix why UI does not update after login
+- Fix state not re-rendering
+
+6) BACKEND (IF NEEDED)
+- Ensure auth middleware works with MongoDB user model
+- Ensure JWT verify is correct
+- Ensure logout does not depend on server (stateless JWT)
+
+7) CLEANUP
+- Remove any leftover SQL-based auth logic
+- Remove duplicate auth checks
+- Remove broken conditionals
+
+8) FINAL RESULT
+- Login works
+- Logout works
+- Logout button visible
+- User state persists after refresh
+- All protected actions work
+- UI updates instantly
+- No SEO damage
+
+Explain clearly:
+- what was broken
+- what you fixed
+- where logout logic was missing

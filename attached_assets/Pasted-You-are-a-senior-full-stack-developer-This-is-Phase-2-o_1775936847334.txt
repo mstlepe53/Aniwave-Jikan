@@ -1,0 +1,162 @@
+You are a senior full-stack developer.
+
+This is Phase 2 of my project. Phase 1 authentication is already done. Now I want to add the user profile and avatar system on top of the existing auth flow.
+
+IMPORTANT:
+- Do not break or redesign the existing authentication system
+- Do not add comments, follows, watch time, badges, XP, or spam protection yet
+- Focus only on user profile, avatar selection, and profile editing
+- Keep the UI premium, modern, responsive, and visually consistent with the rest of the website
+- The design quality must remain high on mobile and desktop
+
+PROJECT CONTEXT:
+- Frontend: React.js
+- Backend: Node.js + Express
+- Database: MySQL
+- Auth is already implemented with JWT
+- Users can already register, login, and stay authenticated
+
+PHASE 2 GOAL:
+Build a complete user profile system so each authenticated user can:
+- view their profile
+- choose an avatar from default options
+- update profile information
+- see a public profile page
+- see a clean profile header with avatar and basic stats placeholder
+
+REQUIREMENTS:
+
+1) PROFILE PAGE
+Create a modern profile page for logged-in users.
+It should display:
+- avatar
+- username
+- email if needed
+- join date
+- basic profile info
+- a clean profile layout
+- a professional premium look
+
+The profile page must be responsive and feel polished, not basic.
+
+2) AVATAR SELECTION
+Add a set of 8–10 default avatars that users can choose from.
+
+Requirements:
+- avatars should be preloaded or stored as static assets
+- user can click one avatar and save it as their profile image
+- selected avatar should immediately reflect in the UI
+- keep avatar picker UI clean and attractive
+- show selected state clearly
+
+3) EDIT PROFILE
+Allow users to edit:
+- username
+- bio (optional)
+- avatar selection
+
+Requirements:
+- show form validation
+- handle loading state
+- handle success and error messages
+- save changes to MySQL
+- update the UI without page reload if possible
+
+4) PUBLIC PROFILE VIEW
+Create a public profile page so other users can view basic profile details.
+
+The public profile should show:
+- avatar
+- username
+- bio
+- join date
+- placeholder sections for future stats
+- clean and modern layout
+
+Do not add follow or social features yet.
+
+5) BACKEND SUPPORT
+Add backend APIs for:
+- get current user profile
+- update profile
+- update avatar
+- get public profile by user id or username
+
+Use JWT to protect private profile routes.
+
+Backend should:
+- validate input
+- prevent invalid avatar values
+- return clear success/error responses
+- never expose password hash
+
+6) DATABASE
+Update the MySQL structure if needed.
+
+Profile-related fields may include:
+- username
+- avatar
+- bio
+- created_at
+- updated_at
+
+Use a clean schema and safe queries.
+
+7) UI/UX QUALITY
+The profile and avatar UI must be:
+- premium
+- modern
+- clean
+- responsive
+- easy to use
+- mobile-friendly
+- visually consistent with the rest of the app
+
+Use:
+- rounded cards
+- soft shadows
+- good spacing
+- elegant buttons
+- smooth transitions
+- clear active state for selected avatar
+
+8) FILE STRUCTURE
+Keep the code modular and maintainable.
+
+Suggested areas:
+Frontend:
+- profile page
+- avatar picker component
+- profile edit form
+- public profile page
+- profile service/api layer
+
+Backend:
+- profile controller
+- profile routes
+- profile validation
+- database queries
+- auth middleware
+
+9) BEHAVIOR
+- authenticated user can view and edit own profile
+- avatar selection must persist in database
+- public profile should load from backend
+- changes should reflect across the app where user avatar is shown
+- do not break auth flow
+
+10) OUTPUT EXPECTATION
+I want:
+- profile page
+- avatar picker
+- edit profile form
+- public profile page
+- backend routes and controller logic
+- MySQL updates
+- clean and professional UI
+- comments only where useful for clarity
+
+IMPORTANT:
+- Build only Phase 2
+- Do not add comments, replies, reactions, follow system, XP, badges, or spam protection yet
+- After finishing this phase, stop and wait for the next phase

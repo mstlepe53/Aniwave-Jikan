@@ -1,0 +1,99 @@
+You are a senior frontend + UX engineer.
+
+I want to add a smart engagement popup for guest users on my streaming website.
+
+GOAL:
+Encourage users to sign up after they have watched content for a long time, without being annoying.
+
+====================================
+TRIGGER LOGIC
+====================================
+
+- Show popup ONLY for non-logged-in users
+- Trigger after:
+  - 2 hours total watch time OR
+  - 20–30 minutes continuous session (fallback)
+- Track watch time using:
+  - video play time OR
+  - active session time (tab must be active)
+- Do NOT trigger immediately on page load
+
+====================================
+DISPLAY RULES
+====================================
+
+- Show only once per session
+- If user clicks "Not Now", do not show again for at least 24 hours
+- Store state in localStorage
+
+====================================
+POPUP UI (VERY IMPORTANT)
+====================================
+
+- Clean, modern, premium design
+- Center modal OR bottom-right floating card (non-intrusive)
+- Smooth fade + scale animation
+- Mobile responsive
+
+Design style:
+- soft shadow
+- rounded corners
+- minimal, Netflix-style feel
+
+====================================
+COPY (USE EXACTLY THIS)
+====================================
+
+Title:
+"Looks like you’re enjoying DRAMALIE 🎬"
+
+Description:
+"Join us for free to unlock comments, your profile, and a more personalized experience. It only takes a few seconds."
+
+Buttons:
+Primary: "Sign Up Free"
+Secondary: "Not Now"
+
+Small text:
+"You can keep watching without signing up."
+
+====================================
+FUNCTIONALITY
+====================================
+
+- "Sign Up Free" → opens signup modal/page
+- "Not Now" → closes popup and saves dismiss state
+- Popup must appear ABOVE all elements (use portal if needed)
+- Must NOT break video playback
+
+====================================
+TECH REQUIREMENTS
+====================================
+
+- Use React component
+- Use React Portal to render popup to document.body
+- Use localStorage to store:
+  - dismissed status
+  - last shown timestamp
+- Use proper z-index layering system
+- No layout shift when popup appears
+
+====================================
+EXTRA UX IMPROVEMENTS
+====================================
+
+- Pause popup if user is interacting with player (optional)
+- Add subtle animation (not distracting)
+- Delay popup by 2–3 seconds after trigger
+
+====================================
+EXPECTED RESULT
+====================================
+
+- Popup appears smoothly after long watch session
+- Encourages signup without annoying user
+- Works perfectly on mobile and desktop
+- Never blocks important UI
+- Feels premium and natural
+
+Do not overcomplicate. Keep it clean, elegant, and production-ready.

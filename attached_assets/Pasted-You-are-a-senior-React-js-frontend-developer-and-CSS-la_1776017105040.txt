@@ -1,0 +1,105 @@
+You are a senior React.js frontend developer and CSS layering/stacking-context debugging expert.
+
+My website has a serious UI layering bug.
+
+When I click header elements like:
+- live search
+- notifications
+- profile menu
+- dropdowns / popovers / popup sections
+
+the popup content appears behind the video player iframe and sometimes behind the episode section or other page content.
+
+I want you to fix this properly so all popup/overlay UI always appears on top of the page.
+
+IMPORTANT:
+- Do NOT redesign the UI
+- Do NOT change the page structure unnecessarily
+- Only fix the layering, popup visibility, and stacking behavior
+- Keep the current design and functionality intact
+
+PROBLEM DETAILS:
+- Header popup sections are rendering below the streaming iframe
+- Live search dropdown is hidden behind the player
+- Notifications panel is hidden behind content
+- Any dropdown/popover/modal from the header should appear above everything
+- The video iframe and episode sidebar must never cover popup UI
+
+WHAT I WANT YOU TO DO:
+
+1) FIX STACKING CONTEXT
+- Inspect all parent containers around the header, player page, and popup components
+- Find any element creating a stacking context, such as:
+  - position + z-index
+  - transform
+  - opacity
+  - filter
+  - isolation
+  - overflow hidden / auto / scroll
+- Remove or work around stacking context issues where needed
+
+2) USE PORTAL FOR POPUPS
+- Render all header popup UI through React Portal into document.body
+- This includes:
+  - live search dropdown
+  - notification panel
+  - profile dropdown
+  - any future modal / popover / floating panel
+- Do not keep these popups inside containers that can clip or hide them
+
+3) CREATE A GLOBAL Z-INDEX SYSTEM
+Define a clear layering scale, for example:
+- base content
+- sticky header
+- dropdown
+- overlay
+- modal
+- toast
+- highest priority popup
+
+Ensure:
+- header popups are above the video iframe
+- dropdowns are above episode lists
+- modals are above all page content
+
+4) FIX THE VIDEO PLAYER LAYER
+- Make sure the iframe/player stays below overlays
+- The player should not cover any floating UI
+- Keep the player layout stable and responsive
+- Do not let iframe stacking interfere with popups
+
+5) FIX OVERFLOW CLIPPING
+- Check containers around the popup areas for overflow hidden or overflow auto
+- If any parent is clipping the popup, remove that clipping or move the popup out using portal
+- Popups must not be cut off at the container edge
+
+6) ENSURE CLICKABILITY
+- All popup buttons, list items, and links must be clickable
+- No invisible layer should block pointer events
+- The popup overlay should not trap clicks incorrectly
+- Close button, search items, and notification items must work properly
+
+7) APPLY CONSISTENT POSITIONING
+- Use fixed positioning for floating panels where needed
+- Keep popups aligned under the header button
+- Keep them responsive on mobile and desktop
+- Prevent layout shifts when opening/closing popup UI
+
+8) MAKE IT WORK FOR ALL HEADER FEATURES
+This fix must apply to:
+- live search suggestions
+- notifications dropdown
+- user profile menu
+- any future header popup or floating panel
+
+EXPECTED RESULT:
+- Header popup UI always appears on top
+- Live search dropdown is visible above the video iframe
+- Notifications panel is visible above the episode list and player
+- No popup is hidden behind any page element
+- No click issues
+- No layout shift or visual glitch
+
+DELIVERABLE:
+Please update the relevant components and styles so that every popup/dropdown/modal is rendered above the streaming page content in a stable, production-ready way.
+Also explain exactly what caused the stacking issue and what you changed to fix it.

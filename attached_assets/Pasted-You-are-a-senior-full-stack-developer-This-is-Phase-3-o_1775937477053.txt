@@ -1,0 +1,174 @@
+You are a senior full-stack developer.
+
+This is Phase 3 of my project. Phase 1 authentication and Phase 2 profile/avatar system are already implemented. Now I want to add the comment system with replies and reactions.
+
+IMPORTANT:
+- Do not break the existing auth or profile systems
+- Do not redesign the UI
+- Do not add follow system, XP, badges, watch streaks, or spam protection yet
+- Focus only on comments, replies, and reactions
+- Keep the UI premium, modern, responsive, and consistent with the current design
+
+PROJECT CONTEXT:
+- Frontend: React.js
+- Backend: Node.js + Express
+- Database: MySQL
+- Auth is already implemented with JWT
+- Users already have profiles and avatars
+
+PHASE 3 GOAL:
+Build a complete episode comment system so users can:
+- post comments under an episode
+- reply to comments
+- react to comments
+- see comment timestamps
+- view clean threaded discussions
+
+REQUIREMENTS:
+
+1) COMMENT SYSTEM
+Add a comment section under each episode page.
+
+Users should be able to:
+- write a comment
+- submit a comment
+- edit or delete their own comment if possible
+- see their avatar and username beside the comment
+- see how long ago the comment was posted
+
+The comment section should feel polished and modern, not basic.
+
+2) REPLY SYSTEM
+Add threaded replies.
+
+Requirements:
+- users can reply to any comment
+- replies should appear under the parent comment
+- support nested layout or simple threaded structure
+- keep indentation clear and readable
+- allow collapse/expand if needed for long threads
+
+3) REACTION SYSTEM
+Add a reaction option for comments.
+
+Requirements:
+- allow users to like a comment
+- one user should not be able to like the same comment multiple times
+- show total reaction count
+- keep the interaction smooth and lightweight
+
+Optional:
+- support one or two extra reaction types if easy, but keep it simple first
+
+4) TIMESTAMP / TIME DISPLAY
+Show a clean time label for every comment, such as:
+- just now
+- 5 minutes ago
+- 2 hours ago
+- 1 day ago
+
+Use a reusable time formatting helper.
+
+5) BACKEND SUPPORT
+Add backend APIs for:
+- create comment
+- fetch comments for an episode
+- create reply
+- like/unlike comment
+- delete or edit own comment if supported
+
+Use JWT protection for all write actions.
+
+Backend should:
+- validate input
+- prevent empty comments
+- sanitize user content
+- protect against XSS
+- return clear success/error responses
+
+6) DATABASE
+Update MySQL structure to support comments and reactions.
+
+Suggested tables:
+- comments
+- comment_replies if needed, or use a parent_comment_id structure
+- comment_reactions
+
+Comments should store:
+- user_id
+- episode_id
+- content
+- parent_id or parent_comment_id
+- created_at
+- updated_at
+
+Reactions should store:
+- user_id
+- comment_id
+- reaction_type if needed
+
+7) UI/UX QUALITY
+The comment section must look premium and easy to use.
+
+UI requirements:
+- modern comment box
+- clean spacing
+- avatar + username + time display
+- reply button
+- like button
+- smooth transitions
+- responsive layout for mobile and desktop
+- thread lines or indentation if useful
+
+The design should feel like a real community platform, not a raw forum.
+
+8) STATE HANDLING
+Make sure the comment section updates properly without full page reload.
+
+Requirements:
+- optimistic UI if possible
+- loading state while posting
+- error state if post fails
+- refresh comment list after submit
+- keep page performance smooth
+
+9) FILE STRUCTURE
+Keep the code modular and maintainable.
+
+Suggested areas:
+Frontend:
+- comment components
+- reply component
+- reaction button component
+- comment service/api layer
+- timestamp helper
+
+Backend:
+- comment controller
+- comment routes
+- validation
+- database queries
+- auth middleware
+
+10) BEHAVIOR
+- authenticated users can comment and reply
+- authenticated users can react
+- users can only edit/delete their own comments if that feature is included
+- comments should load for each episode
+- replies should stay attached to the correct parent comment
+- no unrelated features should be added
+
+11) OUTPUT EXPECTATION
+I want:
+- episode comment section
+- reply system
+- reaction system
+- backend API support
+- MySQL updates
+- modern and responsive UI
+- clean code with comments only where helpful
+
+IMPORTANT:
+- Build only Phase 3
+- Do not add follow system, profile stats, XP, badges, leaderboards, or spam protection yet
+- After finishing this phase, stop and wait for the next phase

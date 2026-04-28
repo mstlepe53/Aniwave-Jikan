@@ -1,0 +1,71 @@
+import mysql from 'mysql2/promise';
+let pool = null;
+function firstEnv(...keys) {
+    return keys.map(key => process.env[key]).find(Boolean);
+}
+function getDatabaseUrl() {
+    return firstEnv('MYSQL_URL', 'MYSQL_PUBLIC_URL', 'DATABASE_URL');
+}
+function getPublicDatabaseUrl() {
+    return firstEnv('MYSQL_PUBLIC_URL');
+}
+function getPublicHost() {
+    return firstEnv('MYSQL_PUBLIC_HOST', 'MYSQLHOST', 'MYSQL_HOST');
+}
+function getConnectionUrl() {
+    const url = firstEnv('MYSQL_PUBLIC_URL', 'MYSQL_URL', 'DATABASE_URL');
+    if (!url)
+        return undefined;
+    try {
+        const parsed = new URL(url);
+        parsed.searchParams.delete('sslmode');
+        return parsed.toString();
+    }
+    catch {
+        return url;
+    }
+}
+export function getDatabaseConfigError() {
+    if (getPublicDatabaseUrl())
+        return null;
+    const host = getPublicHost();
+    if (!host && getDatabaseUrl())
+        return null;
+    if (!host)
+        return 'Missing database configuration: MYSQL_HOST';
+    const missing = [
+        ['MYSQL_USER', firstEnv('MYSQL_USER', 'MYSQLUSER')],
+        ['MYSQL_PASSWORD', firstEnv('MYSQL_PASSWORD', 'MYSQLPASSWORD', 'MYSQL_ROOT_PASSWORD')],
+        ['MYSQL_DATABASE', firstEnv('MYSQL_DATABASE', 'MYSQLDATABASE')],
+    ].filter(([, value]) => !value).map(([key]) => key);
+    return missing.length ? `Missing database configuration: ${missing.join(', ')}` : null;
+}
+export function getPool() {
+    const error = getDatabaseConfigError();
+    if (error) {
+        throw new Error(error);
+    }
+    if (!pool) {
+        const publicUri = getPublicDatabaseUrl();
+        const host = getPublicHost();
+        const uri = publicUri || (host ? undefined : getConnectionUrl());
+        const created = uri
+            ? mysql.createPool(uri)
+            : mysql.createPool({
+                host,
+                port: Number(firstEnv('MYSQL_PUBLIC_PORT', 'MYSQLPORT', 'MYSQL_PORT') || 3306),
+                user: firstEnv('MYSQL_USER', 'MYSQLUSER'),
+                password: firstEnv('MYSQL_PASSWORD', 'MYSQLPASSWORD', 'MYSQL_ROOT_PASSWORD'),
+                database: firstEnv('MYSQL_DATABASE', 'MYSQLDATABASE'),
+                waitForConnections: true,
+                connectionLimit: 10,
+                charset: 'utf8mb4',
+            });
+        // Attach error handler to prevent uncaught exceptions crashing the process
+        created.on?.('error', (err) => {
+            console.error('[DB Pool Error]', err.message);
+        });
+        pool = created;
+    }
+    return pool;
+}

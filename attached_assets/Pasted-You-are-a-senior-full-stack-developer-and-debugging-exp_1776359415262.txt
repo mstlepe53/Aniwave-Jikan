@@ -1,0 +1,170 @@
+You are a senior full-stack developer and debugging expert.
+
+My project was migrated from SQL/MySQL to MongoDB Atlas. Login and signup are working now, but all authenticated user features are broken or not saving/fetching correctly.
+
+Broken features include:
+- bookmark
+- favorites
+- watchlist
+- continue watching
+- saved/liked items
+- user-specific lists
+- any other logged-in user actions
+
+Your task is to fully debug and fix the authenticated user system so all user-specific features work properly again.
+
+IMPORTANT:
+- Do NOT redesign the UI
+- Do NOT break the existing public pages
+- Do NOT remove SEO logic or existing metadata handling
+- Keep the current premium UI quality intact
+- Focus on fixing authentication-linked data flow, MongoDB queries, and frontend state handling
+- Make the code clean, modular, and production-ready
+
+PROJECT CONTEXT:
+- Frontend: React.js
+- Backend: Node.js + Express
+- Database: MongoDB Atlas
+- Auth uses JWT
+- Users can register and log in successfully
+- The problem is that protected user features are not working after MongoDB migration
+
+WHAT TO FIX:
+
+1) AUTHENTICATED USER DATA FLOW
+- Verify that the logged-in user is correctly identified on every protected request
+- Make sure JWT token is being read correctly from headers/cookies/localStorage
+- Make sure the backend can resolve the current user from the token
+- Make sure the frontend always sends the token with protected requests
+- Fix any mismatch between user id, ObjectId, auth middleware, and request payloads
+
+2) BOOKMARK / FAVORITES / WATCHLIST
+Fix all saved-item systems so they work again.
+
+Requirements:
+- users can add/remove items from favorites
+- users can add/remove items from watchlist
+- users can save/bookmark dramas correctly
+- saved items must persist in MongoDB
+- each user must only see their own saved lists
+- duplicate saves must be prevented
+- remove actions must update the UI immediately
+
+3) CONTINUE WATCHING
+Fix continue-watching / watch-progress logic.
+
+Requirements:
+- save watch progress per authenticated user
+- restore progress when user returns
+- show continue-watching items only for that user
+- update progress safely and efficiently
+- prevent duplicate or broken progress records
+- handle episode changes correctly
+
+4) BACKEND MONGODB SCHEMA
+Review and fix the MongoDB collections/models for all authenticated features.
+
+Make sure the following are correctly designed:
+- users
+- favorites
+- watchlist
+- watchProgress
+- bookmarks
+- any saved-item collection used by the app
+
+Requirements:
+- use proper user references
+- use ObjectId correctly
+- add unique indexes where needed
+- prevent duplicate entries
+- use efficient queries
+- make sure populate/reference logic is correct if used
+
+5) ROUTES + CONTROLLERS
+Inspect all protected routes and controllers.
+
+Fix:
+- create
+- read
+- delete
+- toggle actions
+- fetch-by-user actions
+
+Requirements:
+- all protected routes must require JWT auth
+- unauthorized users must get proper 401/403 responses
+- authenticated user actions must never fail silently
+- return clear JSON responses with success, message, data, and error details when needed
+
+6) FRONTEND STATE + API CALLS
+Make sure the frontend is correctly connected to the backend.
+
+Check:
+- API base URL
+- axios/fetch wrapper
+- auth headers
+- token storage
+- response mapping
+- loading states
+- error states
+- optimistic UI updates
+
+Requirements:
+- buttons like favorite, bookmark, add to watchlist, continue watching must work
+- UI must update immediately after action
+- refresh should preserve saved user data
+- user-specific lists must load after login
+- logged-out users should see a proper login prompt or disabled state
+
+7) SEO MUST REMAIN INTACT
+Do not break SEO while fixing auth features.
+
+Keep:
+- dynamic meta tags
+- title tags
+- description tags
+- Open Graph tags
+- Twitter tags
+- canonical URLs
+- sitemap logic
+- page structure for public pages
+
+Requirements:
+- authenticated features must not damage SEO on public pages
+- keep public content crawlable
+- do not add unnecessary noindex tags to public pages
+- keep pages fast and indexable
+
+8) PERFORMANCE + STABILITY
+- remove unnecessary re-renders
+- avoid duplicate API calls
+- add caching only where safe
+- keep user-specific requests efficient
+- do not slow down the app
+- make the auth state stable across refresh and navigation
+
+9) BUG AUDIT
+Before fixing, inspect the codebase for:
+- wrong collection names
+- old SQL references still left behind
+- wrong model imports
+- broken auth middleware
+- stale localStorage logic
+- mismatched user IDs
+- missing ObjectId conversion
+- incorrect populate/query logic
+- route mismatch between frontend and backend
+
+10) DELIVERABLE
+Please:
+- fix all authenticated user features
+- ensure favorites/bookmarks/watchlist/continue watching work properly
+- keep SEO logic intact
+- keep the UI premium and responsive
+- clean up useless or broken code
+- explain exactly what was broken and what you changed
+
+IMPORTANT:
+- Fix the root cause, not only the symptoms
+- Do not add unrelated features
+- Stop after fixing the authenticated user systems

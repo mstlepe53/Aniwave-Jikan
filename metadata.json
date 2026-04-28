@@ -1,0 +1,6 @@
+{
+  "name": "StreamVault",
+  "description": "Stream movies and TV shows online free in HD — powered by TMDB.",
+  "version": "2.0.0",
+  "tmdb": true
+}

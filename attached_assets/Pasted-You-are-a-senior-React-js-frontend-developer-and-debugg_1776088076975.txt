@@ -1,0 +1,72 @@
+You are a senior React.js frontend developer and debugging expert.
+
+My Pay page is crashing and showing this message:
+
+"Something went wrong
+This page encountered an unexpected error. Please try refreshing.
+Refresh Page"
+
+This means the page is throwing a runtime error or a component is failing to render.
+
+Your task is to inspect and fix the Pay page completely.
+
+IMPORTANT:
+- Do NOT redesign the page
+- Do NOT change unrelated pages
+- Focus only on fixing the Pay page crash
+- Keep the UI clean and stable
+- Make the page render safely in all cases
+
+WHAT TO CHECK:
+
+1) COMPONENT CRASH CAUSE
+- Find the exact line or component causing the crash
+- Check for undefined or null values
+- Check for invalid props
+- Check for broken conditional rendering
+- Check for invalid route params
+- Check for API response mismatch
+- Check for bad state initialization
+
+2) DATA SAFETY
+- Add safe optional chaining
+- Add fallback values for missing data
+- Do not assume API data always exists
+- If payment data is missing, show a clean fallback UI instead of crashing
+
+3) ROUTE / PARAM CHECK
+- Verify the Pay page route is correct
+- Make sure route params are valid
+- Make sure the page does not try to render before required data is ready
+
+4) ERROR HANDLING
+- Add a proper loading state
+- Add a proper empty state
+- Add a proper error state
+- Prevent the whole page from crashing if one widget fails
+
+5) COMPONENT ISOLATION
+- If one child component is failing, isolate it
+- Make sure the rest of the Pay page can still render
+- Use an error boundary only if needed
+- Do not let one broken section blank the whole page
+
+6) DEBUGGING
+- Check browser console error carefully
+- Check network request responses
+- Check if any imported component is broken
+- Check if any hook is causing a render loop
+- Check if any payment-related data is undefined
+
+EXPECTED RESULT:
+- Pay page loads normally
+- No crash screen
+- No unexpected error message
+- Stable loading and rendering
+- Clean fallback if payment data is missing
+
+DELIVERABLE:
+- Fix the exact bug causing the Pay page crash
+- Add safe rendering and error handling
+- Keep the UI unchanged
+- Explain what caused the crash and how you fixed it

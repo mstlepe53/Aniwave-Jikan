@@ -1,0 +1,148 @@
+You are a senior full-stack developer.
+
+I am building a modern drama streaming website with a premium UI. I want to implement Phase 1 only: the authentication system.
+
+IMPORTANT:
+- Do not add any other features yet.
+- Do not add comments, follow system, level system, badges, watch time, reactions, or spam protection yet.
+- Focus only on a clean, secure, production-ready authentication foundation.
+- Keep the UI modern, polished, and fully responsive on mobile and desktop.
+- The design quality must remain high and consistent with the rest of the website.
+
+PROJECT CONTEXT:
+- Frontend: React.js
+- Backend: Node.js + Express
+- Database: MySQL
+- Auth method: JWT
+
+PHASE 1 GOAL:
+Build a complete authentication system so users can:
+- sign up
+- log in
+- log out
+- stay logged in using JWT
+- access protected routes only when authenticated
+
+REQUIREMENTS:
+
+1) USER REGISTRATION
+Create a sign-up flow with:
+- username
+- email
+- password
+- confirm password
+
+Validation rules:
+- username must not be empty
+- email must be valid
+- password must have minimum length
+- confirm password must match password
+- show friendly error messages
+
+Backend requirements:
+- hash password with bcrypt
+- store user securely in MySQL
+- prevent duplicate email registration
+- return proper success/error responses
+
+2) USER LOGIN
+Create a login flow with:
+- email
+- password
+
+Backend requirements:
+- verify email exists
+- verify password using bcrypt
+- generate JWT token on success
+- return user data safely without exposing password hash
+
+Frontend requirements:
+- save token securely for now
+- redirect user after successful login
+- show loading state during request
+- show error state if login fails
+
+3) JWT AUTHENTICATION
+Set up JWT properly:
+- create token after login
+- protect private routes using middleware
+- verify token from request headers
+- return 401 or 403 when token is missing or invalid
+
+4) PROTECTED ROUTES
+Create protected routes such as:
+- user dashboard
+- profile placeholder page
+- any route that should require login
+
+If the token is missing or invalid:
+- redirect to login page
+- show a clean message
+
+5) LOGOUT
+Add logout functionality:
+- clear token
+- redirect user to home or login page
+- update UI state correctly
+
+6) UI/UX QUALITY
+The auth pages must look premium and modern (just like the other components UI in my projects. Try to make the same vibe):
+- clean form layout
+- soft shadows
+- rounded corners
+- responsive design
+- good spacing
+- elegant buttons
+- loading spinner or button loading state
+- attractive error messages
+- mobile-friendly layout
+
+The UI should feel like a real product, not a basic admin panel.
+
+7) FILE STRUCTURE
+Use a clean and maintainable structure such as:
+
+Frontend:
+- components
+- pages
+- context or hooks
+- services or api
+- utils
+
+Backend:
+- config
+- controllers
+- routes
+- middleware
+- models
+- utils
+
+8) DATABASE
+Use MySQL properly:
+- create a users table
+- store username, email, password hash, and timestamps
+- ensure unique email
+- prepare structure for future expansion
+
+9) SECURITY
+- hash passwords with bcrypt
+- never store plain passwords
+- never expose password hash in API response
+- validate inputs on both frontend and backend
+- handle errors safely
+- keep token handling clean
+
+10) OUTPUT EXPECTATION
+I want:
+- backend auth API
+- frontend auth pages
+- protected route handling
+- JWT setup
+- MySQL user table
+- clean code with comments only where helpful
+- professional UI quality throughout
+
+IMPORTANT:
+- Build only Phase 1.
+- Do not add profile avatars, comments, follows, XP, badges, or spam protection yet.
+- After finishing Phase 1, stop and wait for the next phase.

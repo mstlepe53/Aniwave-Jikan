@@ -1,0 +1,165 @@
+You are a senior full-stack developer.
+
+This is Phase 4 of my project. Phase 1 authentication, Phase 2 profile/avatar system, and Phase 3 comments/replies/reactions are already implemented. Now I want to add the follow system and improve public profiles.
+
+IMPORTANT:
+- Do not break existing authentication, profile, or comment systems
+- Do not redesign the UI
+- Do not add XP, badges, watch streaks, spam protection, or leaderboard yet
+- Focus only on follow/unfollow and public profile enhancements
+- Keep the UI premium, modern, responsive, and consistent with the current design quality
+
+PROJECT CONTEXT:
+- Frontend: React.js
+- Backend: Node.js + Express
+- Database: MySQL
+- Auth is already implemented with JWT
+- Users already have profiles, avatars, and comments
+- Comment author profiles already exist and should be linked properly
+
+PHASE 4 GOAL:
+Build a complete social follow system so users can:
+- follow other users
+- unfollow other users
+- see followers count
+- see following count
+- visit public profiles
+- view basic social activity on profile pages
+
+REQUIREMENTS:
+
+1) FOLLOW / UNFOLLOW SYSTEM
+Add a follow button on public profile pages and wherever user profiles are shown.
+
+Features:
+- authenticated users can follow another user
+- authenticated users can unfollow a user they already follow
+- follow state should update instantly in the UI
+- prevent users from following themselves
+- prevent duplicate follows
+- show follow/unfollow loading state
+- show success or error feedback cleanly
+
+2) PUBLIC PROFILE ENHANCEMENT
+Improve the public profile page so it becomes more useful and social.
+
+Show:
+- avatar
+- username
+- bio
+- join date
+- followers count
+- following count
+- follow/unfollow button
+- recent comments
+- placeholder or basic activity section
+- optional tabs or sections for comments / activity / about
+
+The profile page should feel premium and polished, not basic.
+
+3) USER PROFILE LINKING
+Make usernames clickable where relevant:
+- in comments
+- in profile cards
+- in any user mentions displayed in the app
+
+Clicking a username should open the public profile page.
+
+4) BACKEND SUPPORT
+Add backend APIs for:
+- follow user
+- unfollow user
+- get followers count
+- get following count
+- check whether current user already follows a profile
+- get public profile with follow-related data
+- get follower/following lists if needed later
+
+Use JWT protection for follow/unfollow actions.
+
+Backend should:
+- validate user IDs
+- block self-follow
+- block duplicate follow records
+- return clear success/error responses
+- keep queries efficient
+
+5) DATABASE
+Add or update MySQL tables to support follows.
+
+Suggested table:
+- follows
+
+Fields:
+- id
+- follower_user_id
+- following_user_id
+- created_at
+
+Make sure:
+- unique follow pair is enforced
+- indexes are added for performance
+- queries are efficient for count and lookup
+
+6) UI/UX QUALITY
+The follow system and public profile must be visually premium.
+
+UI requirements:
+- modern follow button
+- clean counters for followers/following
+- attractive profile layout
+- smooth transitions
+- responsive on mobile and desktop
+- clear loading and disabled states
+- polished empty states
+
+The experience should feel like a real social platform, not a simple forum.
+
+7) STATE HANDLING
+Make sure follow/unfollow updates the UI without full page reload.
+
+Requirements:
+- optimistic UI if possible
+- local loading state
+- refresh profile counts after action
+- keep the page stable and responsive
+
+8) FILE STRUCTURE
+Keep the code modular and maintainable.
+
+Suggested areas:
+Frontend:
+- follow button component
+- profile stats component
+- public profile page updates
+- profile service/api layer
+
+Backend:
+- follow controller
+- follow routes
+- validation
+- database queries
+- auth middleware
+
+9) BEHAVIOR
+- authenticated users can follow/unfollow others
+- current user cannot follow themselves
+- followers/following counts must update correctly
+- public profile should reflect follow state
+- existing comments should still link to profile pages
+- no unrelated features should be added
+
+10) OUTPUT EXPECTATION
+I want:
+- follow/unfollow system
+- followers/following counters
+- improved public profiles
+- backend API support
+- MySQL updates
+- premium and responsive UI
+- clean code with helpful comments only where useful
+
+IMPORTANT:
+- Build only Phase 4
+- Do not add XP, badges, watch time, watch streaks, or spam protection yet
+- After finishing this phase, stop and wait for the next phase

@@ -1,0 +1,134 @@
+You are a senior full-stack engineer and performance optimization expert.
+
+Your task is to deeply analyze my entire codebase (frontend + backend) and transform it into a highly optimized, clean, fast, SEO-friendly, and production-ready web application.
+
+Follow ALL instructions carefully:
+
+========================
+1. FULL CODEBASE CLEANUP
+========================
+- Scan the entire project and remove:
+  - Unused files
+  - Dead code
+  - Duplicate functions
+  - Unused imports
+  - Console.logs (except important debug logs)
+- Refactor messy or repeated logic into reusable functions/components
+- Ensure code is clean, readable, and well-structured
+- Add clear comments where necessary (simple English)
+
+========================
+2. PERFORMANCE OPTIMIZATION (VERY IMPORTANT)
+========================
+Make the website SUPER FAST:
+
+Frontend:
+- Enable lazy loading for all pages (React lazy + Suspense)
+- Optimize images (lazy load + proper sizing)
+- Reduce bundle size (code splitting)
+- Remove unnecessary re-renders
+- Optimize API calls (avoid duplicate fetch)
+- Add caching (localStorage / sessionStorage where useful)
+
+Backend:
+- Optimize API response time
+- Add caching layer if possible
+- Remove unnecessary database queries
+- Use efficient queries (limit, indexing-friendly)
+
+========================
+3. SEO OPTIMIZATION (CRITICAL)
+========================
+- Add dynamic meta tags for EVERY page:
+  - title
+  - description
+  - keywords
+- Ensure each page has unique SEO content
+- Add Open Graph tags
+- Add Twitter meta tags
+- Fix heading structure (h1, h2, h3 properly)
+- Add alt text to all images
+- Generate sitemap.xml (if not exists)
+- Ensure URLs are SEO-friendly
+- Improve page indexing readiness
+
+========================
+4. BUG DETECTION & FIXING
+========================
+- Check ALL pages and components:
+  - Buttons working correctly?
+  - Navigation routing correct?
+  - Any broken links?
+  - Any console errors?
+- Fix:
+  - UI glitches
+  - Layout breaking issues
+  - Mobile responsiveness issues
+- Ensure:
+  - No blank page
+  - No crash
+  - No broken state
+
+========================
+5. UI/UX IMPROVEMENT
+========================
+- Keep UI clean, modern, and smooth
+- Improve spacing, alignment, and consistency
+- Add loading states (skeleton loaders)
+- Improve button feedback (hover, click)
+- Ensure mobile + desktop both perfect
+
+========================
+6. ADD FEATURE: WATCHLIST & FAVORITES
+========================
+Implement a simple but powerful feature:
+
+For logged-in users:
+- Add "Add to Favorites" button
+- Add "Add to Watchlist" button
+
+Backend:
+- Create tables:
+  - favorites
+  - watchlist
+- Store:
+  - user_id
+  - drama_id / episode_id
+  - created_at
+
+Frontend:
+- Show buttons on:
+  - Drama details page
+  - Streaming page
+
+User Profile:
+- Create section:
+  - My Favorites
+  - My Watchlist
+- Show saved dramas
+- Allow remove option
+
+Ensure:
+- Fast loading
+- Clean UI
+- No duplicate entries
+
+========================
+7. FINAL QUALITY CHECK (VERY IMPORTANT)
+========================
+- Re-check entire app like a real user:
+  - Click every button
+  - Navigate every page
+- Fix anything broken
+- Ensure everything works smoothly
+
+========================
+8. OUTPUT FORMAT
+========================
+- Apply changes directly in code
+- Keep code clean and structured
+- Do NOT break existing working features
+- Explain only critical changes briefly
+
+Goal:
+Make the website FAST, CLEAN, PROFESSIONAL, and READY TO SCALE.

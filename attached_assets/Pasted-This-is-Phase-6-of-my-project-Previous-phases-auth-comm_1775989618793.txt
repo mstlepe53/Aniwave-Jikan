@@ -1,0 +1,205 @@
+This is Phase 6 of my project. Previous phases (auth, comments, follow, profile, XP, badges) are completed.
+
+Now I want to build advanced growth and intelligence features to increase engagement, retention, and personalization.
+
+IMPORTANT:
+- Maintain clean, modern UI
+- Fully responsive (mobile + desktop)
+- Optimized performance
+- Modular code structure
+- Use MySQL
+- Add clear comments
+
+====================================
+FEATURE 1: LEADERBOARD SYSTEM
+====================================
+
+Create a leaderboard page showing top users.
+
+Route:
+- /leaderboard
+
+Database:
+Use users table fields:
+- username
+- avatar
+- level
+- xp
+- watch_time
+
+Backend:
+- GET /api/leaderboard?type=xp|watch|level
+
+Return:
+- Top 50 users sorted by:
+  - XP
+  - Watch time
+  - Level
+
+Frontend:
+- Tabs:
+  - Top XP
+  - Most Active (watch_time)
+  - Highest Level
+
+UI:
+- Rank number (#1, #2, #3)
+- Highlight top 3 users
+- Show avatar, username, level, XP
+- Smooth animation
+
+====================================
+FEATURE 2: AI RECOMMENDATION SYSTEM
+====================================
+
+Goal:
+Show personalized dramas to each user.
+
+Logic (simple version first):
+- Based on:
+  - Watch history
+  - Genres clicked
+  - Recently watched
+
+Backend:
+- GET /api/recommendations
+
+Steps:
+1. Track user activity:
+   - drama_id
+   - genre
+   - watch_time
+
+Create table:
+- user_activity
+  - user_id
+  - drama_id
+  - genre
+  - watch_time
+  - created_at
+
+Logic:
+- Find most watched genres
+- Return similar dramas using existing API
+
+Frontend:
+- Add section:
+  "Recommended For You"
+
+UI:
+- Horizontal scroll
+- Skeleton loading
+
+====================================
+FEATURE 3: CONTINUE WATCHING
+====================================
+
+Goal:
+Resume watching where user left.
+
+Database:
+- watch_progress
+  - user_id
+  - episode_id
+  - progress (seconds)
+  - duration
+  - updated_at
+
+Backend:
+- POST /api/progress/save
+- GET /api/progress
+
+Frontend:
+- Show "Continue Watching" section
+- Progress bar
+- Resume button
+
+====================================
+FEATURE 4: TRENDING SYSTEM
+====================================
+
+Goal:
+Show trending dramas.
+
+Logic:
+- Most watched in last 24h / 7 days
+
+Backend:
+- GET /api/trending
+
+Frontend:
+- Section: "Trending Now"
+- Show ranking badge (🔥 #1)
+
+====================================
+FEATURE 5: DAILY REWARD SYSTEM
+====================================
+
+Goal:
+Increase retention.
+
+Database:
+- user_rewards
+  - user_id
+  - last_claimed
+  - streak
+
+Backend:
+- POST /api/rewards/claim
+
+Logic:
+- Daily login = +10 XP
+- 7-day streak bonus
+
+Frontend:
+- Popup:
+  "Claim your daily reward 🎁"
+
+====================================
+FEATURE 6: SEARCH IMPROVEMENT (SMART SEARCH)
+====================================
+
+Improve search UX:
+
+- Instant search suggestions
+- Debounce input
+- Show results dropdown
+
+Backend:
+- Optimize /api/search
+
+Frontend:
+- Live search dropdown
+- Mobile compatible
+
+====================================
+FEATURE 7: NOTIFICATION SYSTEM (BASIC)
+====================================
+
+Database:
+- notifications
+  - user_id
+  - type (reply, follow, badge)
+  - message
+  - read (boolean)
+
+Backend:
+- GET /api/notifications
+- POST create notifications on:
+  - reply
+  - follow
+  - badge unlock
+
+Frontend:
+- Notification bell icon
+- Dropdown list
+
+====================================
+FINAL REQUIREMENTS
+====================================
+
+- Clean UI (no broken layout)
+- Mobile optimized
+- No console errors
+- Proper loading states
+- Code must be well-commented

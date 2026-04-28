@@ -1,0 +1,138 @@
+You are an advanced SEO engineer and full-stack developer.
+
+Your task is to transform my drama streaming website into a HIGH-RANKING SEO MACHINE that can rank on top of Google for drama-related searches (Kdrama, Cdrama, Asian drama, episode streaming, etc).
+
+🎯 GOAL:
+- Rank on top for keywords like:
+  "watch kdrama online free"
+  "watch asian drama english sub"
+  "latest kdrama episode"
+  "watch [drama name] episode X"
+- Ensure FAST indexing and maximum crawl efficiency
+- Make ALL pages (5000–7000+) indexable individually
+
+-----------------------------------
+🔍 1. TECHNICAL SEO (CRITICAL)
+-----------------------------------
+- Create dynamic sitemap.xml (auto updates daily)
+  Include:
+  - homepage
+  - all drama detail pages
+  - all episode pages
+  - genre pages
+  - country pages
+
+- Create robots.txt:
+  Allow all important pages
+  Block unnecessary API routes
+
+- Add canonical tags to prevent duplicate content
+
+- Add structured data (JSON-LD):
+  - Movie / TVSeries schema
+  - Episode schema
+  - Breadcrumb schema
+
+- Add meta tags dynamically per page:
+  - title (optimized with keywords)
+  - description (human + keyword rich)
+  - og:title, og:description, og:image
+
+-----------------------------------
+⚡ 2. PERFORMANCE OPTIMIZATION (SUPER FAST)
+-----------------------------------
+- Implement caching:
+  - API response caching (localStorage or memory cache)
+  - image lazy loading
+  - code splitting (React lazy)
+
+- Optimize images:
+  - use WebP format if possible
+  - lazy load thumbnails
+
+- Add preload for important resources
+
+- Use CDN-friendly structure
+
+-----------------------------------
+📄 3. PROGRAMMATIC SEO PAGES
+-----------------------------------
+Generate SEO-friendly pages automatically:
+
+For EACH drama:
+- URL: /drama/[slug]
+- Unique title + description
+- Full details (story, cast, genre, episodes)
+
+For EACH episode:
+- URL: /watch/[episode-id]
+- Unique title:
+  Example: "Good Boy (2025) Episode 1 English Sub"
+
+For EACH genre:
+- URL: /genre/[genre-name]
+
+For EACH country:
+- URL: /country/[country-name]
+
+-----------------------------------
+✍️ 4. CONTENT OPTIMIZATION
+-----------------------------------
+- Auto-generate unique descriptions (NO duplicate text)
+- Remove source branding (like Dramacool etc.)
+- Use keyword-rich but natural sentences
+
+Example format:
+"[Drama Name] Episode X English Sub is now available. Watch full episode online in HD quality with fast streaming."
+
+-----------------------------------
+🔗 5. INTERNAL LINKING
+-----------------------------------
+- Link:
+  - episode → drama page
+  - drama → other similar dramas
+  - genre → related dramas
+
+- Add "Related Shows" section
+
+-----------------------------------
+📈 6. USER ENGAGEMENT SEO BOOST
+-----------------------------------
+- Add:
+  - watch history
+  - trending section
+  - most viewed
+
+- Improve dwell time:
+  - fast player load
+  - auto next episode
+
+-----------------------------------
+🧠 7. KEYWORD STRATEGY
+-----------------------------------
+Use keywords from dataset:
+- "watch kdrama online free"
+- "kdrama english sub"
+- "latest korean drama 2026"
+- "[drama name] episode X"
+
+Generate long-tail keywords dynamically.
+
+-----------------------------------
+🚀 8. INDEXING BOOST
+-----------------------------------
+- Auto ping search engines when new page added
+- Use sitemap submission strategy
+- Ensure clean URLs (no hash, no #)
+
+-----------------------------------
+🎯 FINAL OUTPUT:
+- Fully SEO optimized code
+- Clean structure
+- Fast loading
+- Indexable thousands of pages
+- Ready to rank on Google
+
+DO NOT break UI.
+DO NOT slow down the site.
+Everything must remain responsive and fast.

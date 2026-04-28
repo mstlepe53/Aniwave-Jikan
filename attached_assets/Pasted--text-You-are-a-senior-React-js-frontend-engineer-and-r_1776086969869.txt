@@ -1,0 +1,88 @@
+```text
+You are a senior React.js frontend engineer and routing/debugging expert.
+
+My website has a serious routing inconsistency bug.
+
+PROBLEM:
+The exact same endpoint/link is sometimes rendering one page, and other times rendering a different page UI.
+
+Examples:
+- Sometimes the same link opens the streaming page
+- Sometimes the same link opens a different details-style page
+- Sometimes the same route shows different UI depending on navigation order or previous state
+
+This is not correct. The same route must always render the same page consistently.
+
+IMPORTANT:
+- Do NOT redesign the UI
+- Do NOT change the app structure unless needed to fix the bug
+- Focus only on fixing route consistency, page mapping, and navigation behavior
+- Keep the existing design and functionality intact
+
+WHAT YOU MUST CHECK:
+
+1) ROUTE CONSISTENCY
+- Inspect all React Router routes carefully
+- Make sure each URL path maps to only one intended page/component
+- Check for duplicate routes, overlapping routes, or conflicting route patterns
+- Check dynamic routes like:
+  - /drama/:id
+  - /watch/:episodeId
+  - /category/:name
+  - /country/:name
+  - /search
+- Make sure there is no route ambiguity
+
+2) LINK GENERATION
+- Inspect all Link / navigate calls
+- Ensure every button and card points to the correct route
+- Make sure detail page links never accidentally point to watch page routes
+- Make sure watch page links never accidentally point to detail page routes
+- Normalize route building so the same item always creates the same URL
+
+3) COMPONENT STATE CONFUSION
+- Check if a single component is being reused for multiple route types incorrectly
+- Check if local state, cached state, or previous page state is causing the wrong UI to render
+- Make sure the page always derives its UI from the current route and current API response only
+- Avoid stale state from previous navigation
+
+4) API RESPONSE MAPPING
+- Check whether the API response shape is causing the app to render the wrong template
+- If a response contains both detail data and stream data, choose the correct page mode explicitly
+- Do not let the UI guess incorrectly based on partial data
+- Add safe route-specific data mapping
+
+5) ROUTE GUARDS / FALLBACKS
+- If a route is invalid, show the correct 404 page
+- If stream data is missing, do not render a details UI by mistake
+- If details data is missing, do not render a streaming UI by mistake
+- Each page should have a clear loading, error, and empty state
+
+6) NAVIGATION STABILITY
+- After clicking a link, the correct page must always open
+- Refreshing, back button, and forward button must preserve the correct page
+- Direct URL access must also work
+- No route should randomly switch UI depending on previous page history
+
+7) DEBUGGING REQUIREMENTS
+- Identify the exact root cause before fixing
+- Check route definitions, link generation, lazy imports, conditionals, and cached state
+- Check if multiple components are mounted on the same path
+- Check if route order is causing conflicts
+- Check if an old component is being reused incorrectly
+
+EXPECTED RESULT:
+- Each URL always opens one consistent page
+- The streaming route always shows the streaming page
+- The details route always shows the details page
+- No random page switching
+- No UI confusion based on previous navigation
+- Stable, predictable routing across the entire app
+
+DELIVERABLE:
+- Fix the route conflict or page mapping bug
+- Update the broken links or navigation logic
+- Remove any duplicate or conflicting routes
+- Ensure page rendering is deterministic and consistent
+- Explain exactly what caused the issue and what you changed to fix it
+```

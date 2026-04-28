@@ -1,0 +1,158 @@
+continue the uncompleted prompt of " This is Phase 5 of my project. Previous phases (auth, comments, reactions, replies) are already completed.
+
+Now I want to implement advanced user engagement features to make the platform feel like a real social community.
+
+IMPORTANT:
+- Maintain clean UI/UX (modern, minimal, responsive)
+- Keep code modular and well-commented
+- Use MySQL for all data storage
+- Follow existing project structure
+
+========================
+FEATURE 1: FOLLOW SYSTEM
+========================
+
+Users should be able to follow/unfollow other users.
+
+Database:
+Create table:
+- follows
+  - id (PK)
+  - follower_id (FK users.id)
+  - following_id (FK users.id)
+  - created_at
+
+Backend:
+- POST /api/users/:id/follow
+- DELETE /api/users/:id/follow
+- GET /api/users/:id/followers
+- GET /api/users/:id/following
+
+Rules:
+- Cannot follow self
+- Prevent duplicate follow
+- Return follower count
+
+Frontend:
+- Add "Follow" button on user profile & comment username hover
+- Toggle button (Follow / Following)
+- Show follower count
+
+========================
+FEATURE 2: USER PROFILE PAGE
+========================
+
+Create a full profile page:
+
+Route:
+- /user/:username
+
+Show:
+- Avatar
+- Username
+- Level
+- XP progress bar
+- Badges
+- Total watchtime
+- Followers / Following count
+- Recent comments
+
+Backend:
+- GET /api/users/:username
+
+UI:
+- Clean card layout
+- Mobile responsive
+- Skeleton loading
+
+========================
+FEATURE 3: XP + LEVEL SYSTEM
+========================
+
+Gamification system:
+
+Database (update users table):
+- xp (default 0)
+- level (default 1)
+- watch_time (seconds)
+
+XP Rules:
+- Comment = +5 XP
+- Reply = +3 XP
+- Watching 10 min = +10 XP
+
+Level Formula:
+- Level = floor(xp / 100)
+
+Backend:
+- Automatically update XP on actions
+- Return updated level
+
+Frontend:
+- Show level badge near username
+- Show XP progress bar in profile
+
+========================
+FEATURE 4: BADGES SYSTEM
+========================
+
+Database:
+- badges table
+  - id
+  - name
+  - icon
+- user_badges table
+  - user_id
+  - badge_id
+
+Examples:
+- First Comment
+- 10 Comments
+- 1 Hour Watchtime
+- Early User
+
+Logic:
+- Auto assign badges
+
+Frontend:
+- Show badges in profile
+- Tooltip on hover
+
+========================
+FEATURE 5: USER HOVER CARD
+========================
+
+When hovering username:
+
+Show popup:
+- Avatar
+- Username
+- Level
+- Follow button
+
+UI:
+- Floating card
+- Smooth animation
+- Proper z-index
+
+========================
+FEATURE 6: PERFORMANCE + SECURITY
+========================
+
+- Add indexes to MySQL tables
+- Prevent spam:
+  - Rate limit comments (max 1 per 10 sec)
+- Sanitize all inputs
+- Optimize API queries
+
+========================
+FINAL REQUIREMENTS
+========================
+
+- Fully working backend + frontend
+- Clean UI (no broken layout)
+- No console errors
+- Mobile + desktop responsive
+- Proper loading states
+
+Add clear comments in code for understanding."

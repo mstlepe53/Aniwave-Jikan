@@ -1,0 +1,18 @@
+Task: Resolve URL routing conflicts between the Express SEO layer and the React SPA in the Dramalie codebase. Do not reduce SEO coverage.
+Fix 1 — /genres and /countries must use botOnly
+In server/seo/routes.ts, the lines app.get('/genres', asyncHandler(renderGenresHubPage)) and app.get('/countries', asyncHandler(renderCountriesHubPage)) must be changed to use botOnly() wrapping, identical to the pattern used for /drama/:id. Real users must reach the React SPA for these paths. Add /genres and /countries as routes in src/App.tsx pointing to the existing Listing component or a new HubPage component — currently these paths hit the 404 page on the client side.
+Fix 2 — Remove /drama/:id and /watch/:id from the botOnly Vite passthrough conflict
+In development mode, server/index.ts uses Vite middleware with the guard if (req.url.startsWith('/api/')) return next(). This means non-API routes — including /drama/, /watch/, /genre/ — always reach Vite middleware. In production, Express static serves index.html for all non-API routes via the catch-all app.get('*', ...). The SEO botOnly routes are registered before both of these, so for bots they intercept correctly. Confirm this order is preserved after any refactor by adding a comment block at the top of registerSeoRoutes() documenting that SEO routes must be registered before Vite middleware and the static catch-all.
+Fix 3 — Sync avatar IDs between front-end and back-end
+In server/utils/validation.ts, the VALID_AVATAR_IDS set must include all 14 avatar IDs: avatar1 through avatar14. Currently it only includes avatar1 through avatar10, which means saving a profile with avatars Haru, Daiki, Ryo, or Kaito returns a 400 error. The source of truth is src/constants/avatars.ts — either import the IDs from a shared constant or update the set manually to match.
+Fix 4 — Remove anthropic|claude from the bot detection regex or isolate it
+In server/seo/routes.ts, the BOT_PATTERN regex includes anthropic and claude as bot identifiers. This causes the Anthropic web crawler and any tool that sets a Claude-branded user-agent to receive SSR HTML instead of the live SPA. If crawling by Anthropic tools is intentionally allowed (it is — robots.txt has User-agent: anthropic-ai Disallow: /), remove both tokens from BOT_PATTERN. If you want Claude's web tool to see the SSR shell (for structured data previews), keep the pattern but document the intent explicitly.
+Fix 5 — Remove the /show/:id SSR duplicate or unify it with /drama/:id
+server/seo/routes.ts registers both /drama/:id and /show/:id pointing to renderDramaPage. The sitemap only generates /drama/ URLs. Either remove the /show/:id SSR route and let it fall through to the SPA (which already handles it via <Route path="show/:id" element={<ShowDetails />}), or add /show/ URLs to the sitemap generation in server/seo/sitemap.ts. Pick one and be consistent.
+Testing checklist after changes:
+
+curl -A "Googlebot/2.1" https://yourdomain.com/drama/some-id → must return full SSR HTML with <h1> and structured data
+curl -A "Mozilla/5.0" https://yourdomain.com/drama/some-id → must return index.html with <div id="root">
+curl -A "Mozilla/5.0" https://yourdomain.com/genres → must return index.html (currently returns SSR HTML — this is the bug)
+curl -A "Googlebot/2.1" https://yourdomain.com/genres → must return SSR HTML
+Profile save with avatar12 (Daiki) → must return 200, not 400

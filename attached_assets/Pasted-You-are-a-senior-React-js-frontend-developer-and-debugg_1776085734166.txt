@@ -1,0 +1,100 @@
+You are a senior React.js frontend developer and debugging expert.
+
+My website is mostly working, but there is a serious and frustrating bug on the streaming/watch page.
+
+CURRENT PROBLEM:
+- Home page works
+- Details page works
+- But the Watch / Streaming page sometimes becomes completely blank white
+- The iframe/video player does not appear
+- No UI is visible on the page
+- When I click the browser back button, sometimes the page stays blank again
+- The page only becomes visible again after a manual refresh
+- In Replit it may work, but locally it breaks or behaves differently
+- This makes the app unstable and unusable
+
+I need you to debug and fix this properly in a production-ready way.
+
+IMPORTANT:
+- Do NOT redesign the UI
+- Do NOT change the layout unless needed for stability
+- Do NOT remove existing features
+- Focus only on fixing the watch page blank-screen bug, navigation bug, and rendering stability
+- The fix must work both in local development and in deployment
+
+WHAT YOU MUST CHECK:
+
+1) ROUTE RENDERING ISSUE
+- Inspect the watch page route carefully
+- Make sure the route is defined correctly in React Router
+- Make sure dynamic params are correct
+- Make sure the watch page is not crashing due to missing params
+- Make sure back/forward navigation works properly
+
+2) BLANK WHITE PAGE CAUSE
+- Find out why the watch page becomes blank
+- Check for runtime errors in the watch page component
+- Check for failed API fetches causing the page to crash
+- Check for bad conditional rendering that returns nothing
+- Check for lazy-loaded route chunks failing to load
+- Check for any Suspense fallback issue
+- Check for any undefined/null access causing component failure
+
+3) IFRAME / PLAYER RENDERING
+- Ensure the iframe or video player always renders safely
+- If the stream source is missing, show a proper fallback UI instead of a blank page
+- Make sure the player container has a stable size and does not collapse
+- Use safe optional chaining and error boundaries if needed
+
+4) BROWSER BACK BUTTON
+- Fix browser history handling
+- When I press back from the watch page to the details page, the page must render correctly every time
+- No blank page should appear after going back
+- No manual refresh should be required
+
+5) LOCAL VS REPLIT DIFFERENCE
+- Investigate why it works in Replit but not locally
+- Check:
+  - environment variables
+  - API base URL
+  - routing base path
+  - build/dev differences
+  - code splitting / chunk loading
+  - CORS or proxy setup if relevant
+  - browser console errors
+
+6) ERROR HANDLING
+- Add a proper loading state for the watch page
+- Add a proper error state if stream data fails
+- Add a fallback UI if iframe cannot load
+- Add an error boundary if needed so one component crash does not blank the whole page
+
+7) NAVIGATION STABILITY
+- Make sure clicking from details page to watch page always works
+- Make sure direct route access works
+- Make sure back and forward buttons work
+- Make sure refresh on the watch page also works if the server supports it
+
+8) DEBUGGING REQUIREMENTS
+- Check browser console errors carefully
+- Check network requests
+- Check route params and data flow
+- Identify the exact root cause before fixing
+- Do not guess
+- Fix the actual cause, not only the symptom
+
+EXPECTED RESULT:
+- Watch page always renders
+- No blank white page
+- Iframe/video player appears correctly
+- Back button works correctly
+- Refresh works correctly
+- Local and Replit behave consistently
+- The page is stable and production-ready
+
+DELIVERABLE:
+- Fix the watch page rendering bug
+- Fix navigation/back button issue
+- Fix iframe/player loading stability
+- Add graceful error and loading handling
+- Explain exactly what was causing the blank page and what you changed to fix it

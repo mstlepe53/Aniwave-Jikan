@@ -1,0 +1,202 @@
+```text
+This is Phase 7 of my project. Previous phases (auth, profile, comments, follow, XP, badges, leaderboard, recommendations, continue watching, notifications) are already completed.
+
+Now I want to add advanced AI-powered and intelligence-driven features to make the platform feel smarter, more personalized, and more premium.
+
+IMPORTANT:
+- Keep the UI clean, modern, responsive, and premium
+- Do not break any existing features
+- Do not redesign the app
+- Keep code modular, maintainable, and well-commented
+- Use MySQL for user data and activity data
+- If external AI APIs are used, keep them optional and safe
+- The website must still work smoothly even if AI features are unavailable
+
+====================================
+FEATURE 1: SMART AI RECOMMENDATION ENGINE
+====================================
+
+Build a smarter recommendation system that improves over time.
+
+Goal:
+- Recommend dramas based on user behavior and preferences
+- Use watch history, liked genres, search history, comments, follows, and completed episodes
+
+Requirements:
+- Create a recommendation engine that can rank dramas by relevance
+- Use a hybrid approach:
+  1. rule-based scoring first
+  2. optional AI-assisted scoring later
+- Show sections like:
+  - Recommended For You
+  - Because You Watched...
+  - Similar to Your Favorites
+  - Trending in Your Interests
+
+Backend:
+- Create API endpoints for personalized recommendations
+- Store user activity data
+- Track genre preference and behavior signals
+- Return ranked results with a score
+
+Frontend:
+- Premium recommendation cards
+- Horizontal scroll or grid layout
+- Skeleton loading
+- Empty state fallback
+- Responsive design
+
+====================================
+FEATURE 2: ADVANCED SEARCH INTELLIGENCE
+====================================
+
+Improve search with smarter intent handling.
+
+Requirements:
+- search suggestions
+- query understanding
+- typo tolerance if possible
+- recent searches
+- trending searches
+- search history per user
+- smart autocomplete
+
+Backend:
+- store search history
+- analyze frequent queries
+- rank suggestions
+- return better search results based on context
+
+Frontend:
+- live search suggestions
+- clean dropdown
+- mobile-friendly search overlay
+- recent search chips
+- trending query chips
+
+====================================
+FEATURE 3: CONTENT DISCOVERY PERSONALIZATION
+====================================
+
+Make the home page adapt to the user.
+
+Requirements:
+- reorder homepage sections for logged-in users
+- show more of the genres they watch most
+- promote content based on activity
+- add personalized homepage blocks
+
+Examples:
+- Your Watch Picks
+- Your Favorite Genres
+- Continue Where You Left Off
+- Because You Follow These Users
+
+====================================
+FEATURE 4: AI-ASSISTED COMMENT INSIGHTS
+====================================
+
+Use AI or smart heuristics to improve comment experience.
+
+Requirements:
+- highlight useful comments
+- detect spam / low-quality content
+- sort comments by helpfulness or relevance
+- optionally summarize comment threads for long discussions
+- show top comments first
+
+Important:
+- This must not break the existing comment system
+- Keep moderation lightweight and user-friendly
+
+====================================
+FEATURE 5: SMART NOTIFICATION PRIORITY
+====================================
+
+Improve notification handling.
+
+Requirements:
+- prioritize important notifications
+- group similar notifications
+- mark best notifications as highlighted
+- reduce noise from repeated updates
+- keep notifications clean and useful
+
+Examples:
+- new follower
+- reply to your comment
+- badge unlocked
+- daily reward ready
+- recommended content updates
+
+====================================
+FEATURE 6: OPTIONAL AI INTEGRATION LAYER
+====================================
+
+If an external AI service is used, implement it safely and optionally.
+
+Requirements:
+- create a separate AI service layer
+- keep API keys in environment variables
+- do not expose keys to frontend
+- fallback to rule-based logic if AI fails
+- do not block the app if AI is unavailable
+
+Possible AI use cases:
+- recommendation ranking
+- search intent expansion
+- comment summarization
+- smart tags generation
+
+====================================
+FEATURE 7: ANALYTICS FOR PERSONALIZATION
+====================================
+
+Track useful user signals.
+
+Store:
+- viewed drama IDs
+- watched genres
+- search terms
+- clicked recommendations
+- time spent
+- completed episodes
+
+Use this data to improve recommendations.
+
+Backend:
+- create clean activity tracking endpoints
+- make sure tracking is lightweight
+- avoid over-logging
+- optimize queries with indexes
+
+====================================
+UI / UX REQUIREMENTS
+====================================
+
+- premium, modern, and polished design
+- smooth animation
+- soft shadows and rounded cards
+- beautiful loading states
+- responsive on mobile and desktop
+- no broken layout
+- no clutter
+- no slow rendering
+
+====================================
+FINAL EXPECTATION
+====================================
+
+I want a real smart platform with:
+- intelligent recommendations
+- better search
+- personalized home sections
+- smart comment handling
+- prioritized notifications
+- optional AI assistance
+- clean fallback if AI is unavailable
+
+Do not add unrelated features.
+Do not break the current system.
+Build only Phase 7 and stop after completing it.
+```
