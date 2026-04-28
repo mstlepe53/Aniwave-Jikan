@@ -23,7 +23,7 @@ app.use(express.json({ limit: '100kb' }));
 // Set MIRURO_API_URL in your .env file.
 // Example: MIRURO_API_URL=http://localhost:8000
 // Example: MIRURO_API_URL=https://your-miruro-api.example.com
-const MIRURO_API_URL = (process.env.MIRURO_API_URL || 'https://your-miruro-api.example.com').replace(/\/$/, '');
+const MIRURO_API_URL = (process.env.MIRURO_API_URL || 'https://miruro-nine-navy.vercel.app').replace(/\/$/, '');
 
 let dbReady = false;
 app.use(async (_req, _res, next) => {
